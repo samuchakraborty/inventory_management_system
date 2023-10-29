@@ -23,15 +23,12 @@ func init() {
 
 	}
 
-	log.Println("file Name", fileName)
-
 	buff, readFileError := os.ReadFile(fileName)
 
 	if readFileError != nil {
 		log.Println("Read file Error", readFileError)
 
 	}
-	log.Println("buff: ", toml.NewDecoder(strings.NewReader(string(buff))))
 
 	configError := toml.NewDecoder(strings.NewReader(string(buff))).Decode(&Config)
 	if configError != nil {

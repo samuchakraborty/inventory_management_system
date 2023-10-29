@@ -1,5 +1,5 @@
 # listen addr of http api server
-addr = ":8000"
+addr = "9000"
 
 # [owner]
 name = "Samu Chakraborty"

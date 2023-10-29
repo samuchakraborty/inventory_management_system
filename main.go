@@ -12,7 +12,6 @@ func main() {
 	error := srv.Start(configs.Config.Server, configs.Config.Addr)
 
 	if error != nil {
-
 		log.Println("Start", error)
 
 	}

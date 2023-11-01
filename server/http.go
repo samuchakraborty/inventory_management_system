@@ -3,6 +3,7 @@ package server
 import (
 	"github.com/gin-gonic/gin"
 	"samu.com/inventory_management_system/controllers"
+	"samu.com/inventory_management_system/database"
 )
 
 // start the server
@@ -12,19 +13,8 @@ func Start(ip, port string) error {
 
 // set up server config
 func setUpRouter() *gin.Engine {
+	database.Database()
 	router := gin.New()
-	Database()
-	// gen := GenerateAllTable()
-
-	// gen.UseDB(db)
-	// gen.ApplyBasic(
-	// 	// Generate structs from all tables of current database
-	// 	gen.GenerateAllTable()...,
-	// )
-	// // Generate the code
-	// gen.Execute()
-
-	// router.Use(gin.Logger())
 
 	v1 := router.Group("v1")
 	{

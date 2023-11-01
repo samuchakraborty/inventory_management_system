@@ -4,10 +4,9 @@ import (
 	"log"
 
 	"samu.com/inventory_management_system/configs"
+	"samu.com/inventory_management_system/database"
 	"samu.com/inventory_management_system/server"
 )
-
-//go:generate sqlboiler --wipe mysql
 
 func main() {
 
@@ -16,5 +15,7 @@ func main() {
 	if error != nil {
 		log.Println("Start", error)
 	}
+
+	defer database.DB.Close()
 
 }

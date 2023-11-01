@@ -2,29 +2,20 @@ package controllers
 
 import (
 	"context"
-	"database/sql"
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"samu.com/inventory_management_system/database"
 	"samu.com/inventory_management_system/models"
-)
-
-var (
-	// DB *gorm.DB
-	DB *sql.DB
 )
 
 func UserController(c *gin.Context) {
 
-	// user, err := models.Users(qm.Load(models.UserRels)).One(context.Background(), server.DB)
-	// if err != nil {
-	// 	// Handle the error
-	// }
-	count, err := models.Users().Count(context.Background(), DB)
+	count, err := models.Users().Count(context.Background(), database.DB)
 	if err != nil {
-		// Handle the error
+		log.Fatalln(err.Error(), "sam8")
 	}
-	// user, err := models.FindUser(context.Background(), server.DB)
 
 	c.JSON(http.StatusAccepted, gin.H{"hello": count})
 

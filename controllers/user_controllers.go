@@ -1,22 +1,44 @@
 package controllers
 
 import (
-	"context"
-	"log"
+	"fmt"
+	"inventory/database"
+	"inventory/models"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"samu.com/inventory_management_system/database"
-	"samu.com/inventory_management_system/models"
 )
 
 func UserController(c *gin.Context) {
 
-	count, err := models.Users().Count(context.Background(), database.DB)
-	if err != nil {
-		log.Fatalln(err.Error(), "sam8")
+	user := &models.User{
+		Username: "samu",
+		Role:     "database_admin",
 	}
 
-	c.JSON(http.StatusAccepted, gin.H{"hello": count})
+	database.DB.Create(user)
+
+	database.DB.Find(models.User{})
+
+	c.JSON(http.StatusAccepted, gin.H{"hello": user})
+
+}
+func GetAllUser(c *gin.Context) {
+
+	user := &models.User{
+		Username: "samu",
+		Role:     "database_admin",
+	}
+
+	res := database.DB.Create(user)
+	if res.RowsAffected != 0 {
+		fmt.Println(res)
+
+	}
+	fmt.Println(res)
+
+	// database.DB.FindInBatches()
+
+	c.JSON(http.StatusAccepted, gin.H{"hello": user})
 
 }

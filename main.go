@@ -1,11 +1,9 @@
 package main
 
 import (
+	"inventory/configs"
+	"inventory/server"
 	"log"
-
-	"samu.com/inventory_management_system/configs"
-	"samu.com/inventory_management_system/database"
-	"samu.com/inventory_management_system/server"
 )
 
 func main() {
@@ -15,7 +13,5 @@ func main() {
 	if error != nil {
 		log.Println("Start", error)
 	}
-
-	defer database.DB.Close()
 
 }

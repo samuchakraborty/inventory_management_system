@@ -1,6 +1,6 @@
 CREATE TABLE `users` (
   `id` integer PRIMARY KEY AUTO_INCREMENT,
-  `username` varchar(255),
+  `username` varchar(255) UNIQUE,
   `role` varchar(255),
   `created_at` timestamp,
   `deleted_at` timestamp,
@@ -9,7 +9,7 @@ CREATE TABLE `users` (
 
 CREATE TABLE `product` (
   `product_id` integer PRIMARY KEY AUTO_INCREMENT,
-  `product_name` varchar(255),
+  `product_name` varchar(255) UNIQUE,
   `product_description` varchar(255),
   `stock` integer,
   `product_price` double,
@@ -22,7 +22,7 @@ CREATE TABLE `product` (
 
 CREATE TABLE `category` (
   `category_id` integer PRIMARY KEY AUTO_INCREMENT,
-  `category_name` varchar(255),
+  `category_name` varchar(255) UNIQUE,
   `category_description` varchar(255),
   `created_at` timestamp,
   `deleted_at` timestamp,

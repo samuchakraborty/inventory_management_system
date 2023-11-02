@@ -6,7 +6,6 @@ import (
 
 	_ "github.com/go-sql-driver/mysql"
 	"gorm.io/driver/mysql"
-	"gorm.io/gen"
 	"gorm.io/gorm"
 )
 
@@ -25,18 +24,8 @@ func Database() {
 	if err != nil {
 		fmt.Println("db.Ping failed:", err)
 	}
-	g := gen.NewGenerator(gen.Config{
-		OutPath: "../query",
-		Mode:    gen.WithoutContext | gen.WithDefaultQuery | gen.WithQueryInterface, // generate mode
-	})
-	g.UseDB(db)
-	g.ApplyBasic(
-		// Generate structs from all tables of current database
-		g.GenerateAllTable()...,
-	)
-	// Generate the code
-	g.Execute()
 
 	DB = db
+	// return db
 
 }

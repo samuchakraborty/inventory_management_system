@@ -39,9 +39,11 @@ func Start(ip, port string) error {
 
 // set up server config
 func setUpRouter() *gin.Engine {
-	database.Database()
+	// database.Database()
 
 	router := gin.New()
+
+	router.Use(database.DatabaseMiddleware())
 	// programmatically set swagger info
 	docs.SwaggerInfo.Title = "Swagger Example API"
 	docs.SwaggerInfo.Description = "This is a sample server Petstore server."
@@ -55,7 +57,7 @@ func setUpRouter() *gin.Engine {
 		{
 			// user := new(controllers.UserController)
 			userGroup.GET("/getAllUser", controllers.GetAllUser)
-			userGroup.GET("/createUser", controllers.CreateCustomer)
+			userGroup.POST("/createUser", controllers.CreateCustomer)
 
 		}
 	}

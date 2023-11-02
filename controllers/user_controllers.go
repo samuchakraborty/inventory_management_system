@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"inventory/database"
 	"inventory/model"
 	"log"
@@ -33,22 +32,46 @@ func GetAllUser(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Internal Server Error"})
 		return
 	}
+
 	c.JSON(http.StatusOK, gin.H{"users": user})
 
 }
 
+// createUser godoc
+// @Summary      Create User
+// @Description  Create User
+// @Tags         User
+// @Accept       json
+// @Param		 username	query		string	true	"username "
+// @Param		 role	query		string	true	"role "
+// @Produce      json
+// @Success      200  {object}  []model.User
+// @Failure      400  {object} object
+// @Failure      404  {object} object
+// @Failure      500  {object} object
+// @Router       /createUser  [post]
 func CreateCustomer(c *gin.Context) {
 
 	username := c.Query("username")
 	role := c.Query("role")
-
-	fmt.Println(username)
-
 	user := &model.User{
 		Username: username,
 		Role:     role,
 	}
 
+	errors := make(map[string]string)
+
+	if username == "" {
+		errors["username"] = "Username is required"
+	}
+	if role == "" {
+		errors["role"] = "Role is required"
+	}
+
+	if len(errors) > 0 {
+		c.JSON(http.StatusBadRequest, gin.H{"errors": errors})
+		return
+	}
 	res := database.DB.Create(&user)
 	if res.Error == nil {
 		c.JSON(http.StatusOK, gin.H{"user": user})
@@ -56,9 +79,9 @@ func CreateCustomer(c *gin.Context) {
 		if strings.Contains(res.Error.Error(), "Duplicate entry") {
 			c.JSON(http.StatusConflict, gin.H{"error": "Username already exists"})
 		} else {
-			c.JSON(http.StatusInternalServerError, gin.H{"error": "Internal Server Error"})
+			c.JSON(http.StatusInternalServerError, gin.H{"error": "Internal Server Error",	"msg":res.Error.Error()})
 		}
 		return
 	}
-
 }
+

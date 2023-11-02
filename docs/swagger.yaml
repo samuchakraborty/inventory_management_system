@@ -26,6 +26,46 @@ definitions:
 info:
   contact: {}
 paths:
+  /createUser:
+    post:
+      consumes:
+      - application/json
+      description: Create User
+      parameters:
+      - description: 'username '
+        in: query
+        name: username
+        required: true
+        type: string
+      - description: 'role '
+        in: query
+        name: role
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/model.User'
+            type: array
+        "400":
+          description: Bad Request
+          schema:
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            type: object
+      summary: Create User
+      tags:
+      - User
   /getAllUser:
     get:
       consumes:

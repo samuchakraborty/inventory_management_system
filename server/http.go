@@ -1,25 +1,5 @@
 package server
 
-// @title           Swagger Example API
-// @version         1.0
-// @description     This is a sample server celler server.
-// @termsOfService  http://swagger.io/terms/
-
-// @contact.name   API Support
-// @contact.url    http://www.swagger.io/support
-// @contact.email  support@swagger.io
-
-// @license.name  Apache 2.0
-// @license.url   http://www.apache.org/licenses/LICENSE-2.0.html
-
-// @host      localhost:9000
-// @BasePath  /api/v1
-
-// @securityDefinitions.basic  BasicAuth
-
-// @externalDocs.description  OpenAPI
-// @externalDocs.url          https://swagger.io/resources/open-api/
-
 import (
 	"inventory/controllers"
 	"inventory/database"
@@ -45,11 +25,11 @@ func setUpRouter() *gin.Engine {
 
 	router.Use(database.DatabaseMiddleware())
 	// programmatically set swagger info
-	docs.SwaggerInfo.Title = "Swagger Example API"
-	docs.SwaggerInfo.Description = "This is a sample server Petstore server."
+	docs.SwaggerInfo.Title = "Inventory Management System"
+	docs.SwaggerInfo.Description = "This is a sample server for inventory."
 	docs.SwaggerInfo.Version = "1.0"
-	docs.SwaggerInfo.Host = "localhost:9000/v1"
-	docs.SwaggerInfo.BasePath = ""
+	docs.SwaggerInfo.Host = "localhost:9000"
+	docs.SwaggerInfo.BasePath = "/v1"
 	docs.SwaggerInfo.Schemes = []string{"http"}
 	v1 := router.Group("v1")
 	{

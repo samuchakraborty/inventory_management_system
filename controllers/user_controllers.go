@@ -20,7 +20,7 @@ import (
 // @Failure      400  {object}  httputil.HTTPError
 // @Failure      404  {object}  httputil.HTTPError
 // @Failure      500  {object}  httputil.HTTPError
-// @Router       /getAllUser  [get]
+// @Router       /v1/getAllUser  [get]
 func GetAllUser(c *gin.Context) {
 
 	user := []model.User{}
@@ -49,7 +49,7 @@ func GetAllUser(c *gin.Context) {
 // @Failure      400  {object} object
 // @Failure      404  {object} object
 // @Failure      500  {object} object
-// @Router       /createUser  [post]
+// @Router       /v1/createUser  [post]
 func CreateCustomer(c *gin.Context) {
 
 	username := c.Query("username")

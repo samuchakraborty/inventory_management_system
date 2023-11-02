@@ -4,7 +4,7 @@
         "contact": {}
     },
     "paths": {
-        "/createUser": {
+        "/v1/createUser": {
             "post": {
                 "description": "Create User",
                 "consumes": [
@@ -64,7 +64,7 @@
                 }
             }
         },
-        "/getAllUser": {
+        "/v1/getAllUser": {
             "get": {
                 "description": "get User",
                 "consumes": [

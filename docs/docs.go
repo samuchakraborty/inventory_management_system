@@ -15,7 +15,7 @@ const docTemplate = `{
     "host": "{{.Host}}",
     "basePath": "{{.BasePath}}",
     "paths": {
-        "/createUser": {
+        "/v1/createUser": {
             "post": {
                 "description": "Create User",
                 "consumes": [
@@ -75,7 +75,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/getAllUser": {
+        "/v1/getAllUser": {
             "get": {
                 "description": "get User",
                 "consumes": [

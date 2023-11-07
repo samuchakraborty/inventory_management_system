@@ -23,13 +23,15 @@ func setUpRouter() *gin.Engine {
 
 	router := gin.New()
 
+	router.Use(gin.Logger())
+
 	router.Use(database.DatabaseMiddleware())
 	// programmatically set swagger info
 	docs.SwaggerInfo.Title = "Inventory Management System"
 	docs.SwaggerInfo.Description = "This is a sample server for inventory."
 	docs.SwaggerInfo.Version = "1.0"
 	docs.SwaggerInfo.Host = "localhost:9000"
-	docs.SwaggerInfo.BasePath = "/v1"
+	docs.SwaggerInfo.BasePath = ""
 	docs.SwaggerInfo.Schemes = []string{"http"}
 	v1 := router.Group("v1")
 	{

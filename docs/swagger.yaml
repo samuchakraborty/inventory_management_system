@@ -1,13 +1,4 @@
 definitions:
-  httputil.HTTPError:
-    properties:
-      code:
-        example: 400
-        type: integer
-      message:
-        example: status bad request
-        type: string
-    type: object
   model.User:
     properties:
       created_at:
@@ -21,6 +12,15 @@ definitions:
       updated_at:
         type: string
       username:
+        type: string
+    type: object
+  utils.HTTPError:
+    properties:
+      code:
+        example: 400
+        type: integer
+      message:
+        example: status bad request
         type: string
     type: object
 info:
@@ -83,15 +83,15 @@ paths:
         "400":
           description: Bad Request
           schema:
-            $ref: '#/definitions/httputil.HTTPError'
+            $ref: '#/definitions/utils.HTTPError'
         "404":
           description: Not Found
           schema:
-            $ref: '#/definitions/httputil.HTTPError'
+            $ref: '#/definitions/utils.HTTPError'
         "500":
           description: Internal Server Error
           schema:
-            $ref: '#/definitions/httputil.HTTPError'
+            $ref: '#/definitions/utils.HTTPError'
       summary: List User
       tags:
       - User

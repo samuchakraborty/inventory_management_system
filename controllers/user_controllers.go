@@ -40,8 +40,7 @@ func GetAllUser(c *gin.Context) {
 // @Description  Create User
 // @Tags         User
 // @Accept       json
-// @Param		 username	query		string	true	"username "
-// @Param		 role	query		string	true	"role "
+// @Param		 Object	body model.User{}	true "Object"
 // @Produce      json
 // @Success      200  {object}  []model.User
 // @Failure      400  {object} object

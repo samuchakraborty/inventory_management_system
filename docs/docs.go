@@ -30,18 +30,13 @@ const docTemplate = `{
                 "summary": "Create User",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "username ",
-                        "name": "username",
-                        "in": "query",
-                        "required": true
-                    },
-                    {
-                        "type": "string",
-                        "description": "role ",
-                        "name": "role",
-                        "in": "query",
-                        "required": true
+                        "description": "Object",
+                        "name": "Object",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/model.User"
+                        }
                     }
                 ],
                 "responses": {
@@ -124,19 +119,7 @@ const docTemplate = `{
         "model.User": {
             "type": "object",
             "properties": {
-                "created_at": {
-                    "type": "string"
-                },
-                "deleted_at": {
-                    "type": "string"
-                },
-                "id": {
-                    "type": "integer"
-                },
                 "role": {
-                    "type": "string"
-                },
-                "updated_at": {
                     "type": "string"
                 },
                 "username": {
@@ -151,10 +134,7 @@ const docTemplate = `{
                     "type": "integer",
                     "example": 400
                 },
-                "message": {
-                    "type": "string",
-                    "example": "status bad request"
-                }
+                "message": {}
             }
         }
     }

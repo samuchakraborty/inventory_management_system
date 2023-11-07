@@ -1,15 +1,7 @@
 definitions:
   model.User:
     properties:
-      created_at:
-        type: string
-      deleted_at:
-        type: string
-      id:
-        type: integer
       role:
-        type: string
-      updated_at:
         type: string
       username:
         type: string
@@ -19,9 +11,7 @@ definitions:
       code:
         example: 400
         type: integer
-      message:
-        example: status bad request
-        type: string
+      message: {}
     type: object
 info:
   contact: {}
@@ -32,16 +22,12 @@ paths:
       - application/json
       description: Create User
       parameters:
-      - description: 'username '
-        in: query
-        name: username
+      - description: Object
+        in: body
+        name: Object
         required: true
-        type: string
-      - description: 'role '
-        in: query
-        name: role
-        required: true
-        type: string
+        schema:
+          $ref: '#/definitions/model.User'
       produces:
       - application/json
       responses:
